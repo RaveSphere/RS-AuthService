@@ -11,8 +11,10 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(IValidator<CreateUserRequest> validator, HttpClient httpClient, IHashingService hashingService) : ControllerBase
+    public class AuthController(IValidator<CreateUserRequest> validator, HttpClient httpClient, IHashingService hashingService, IConfiguration configuration) : ControllerBase
     {
+        private string? _userServiceBaseUrl;
+
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserRequest request, CancellationToken cancellationToken = default)
         {
@@ -25,7 +27,8 @@ namespace Api.Controllers
 
             HashingModel hashingModel = await hashingService.HashAsync(request.Username, request.Password, Guid.NewGuid());
 
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync("https://localhost:7221/api/Users", hashingModel, cancellationToken);
+            _userServiceBaseUrl = configuration["UserServiceBaseUrl"];
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{_userServiceBaseUrl}/api/Users", hashingModel, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
