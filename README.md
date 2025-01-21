@@ -1,3 +1,3 @@
 # RS-AuthService
 
-Service to handle user logins
+Service to handle logins, hashing and tokens
