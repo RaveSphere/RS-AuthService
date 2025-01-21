@@ -28,7 +28,7 @@ namespace Api.Controllers
             HashingModel hashingModel = await hashingService.HashAsync(request.Username, request.Password, Guid.NewGuid());
 
             _userServiceBaseUrl = configuration["UserServiceBaseUrl"];
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{_userServiceBaseUrl}/api/Users", hashingModel, cancellationToken);
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync($"{_userServiceBaseUrl}/api/Users", UserMapper.Map(hashingModel), cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {

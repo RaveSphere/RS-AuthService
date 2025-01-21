@@ -1,5 +1,7 @@
-﻿using Api.ResponseModels;
+﻿using Api.DTO;
+using Api.ResponseModels;
 using Api.ViewModels;
+using Core.Models;
 
 namespace Api.Mappers
 {
@@ -8,6 +10,11 @@ namespace Api.Mappers
         public static UserVM Map(CreateUserResponse user)
         {
             return new UserVM(user.Username);
+        }
+
+        public static CreateUserDTO Map(HashingModel hashingModel)
+        {
+            return new CreateUserDTO(hashingModel.Username, hashingModel.HashedPassword, hashingModel.Salt);
         }
     }
 }
