@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface IHashingService
     {
-        public Task<HashingModel> Hash(string username, string password, Guid salt);
+        public Task<HashingModel> HashAsync(string username, string password, Guid salt);
     }
 }

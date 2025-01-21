@@ -23,7 +23,7 @@ namespace Api.Controllers
                 return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
             }
 
-            HashingModel hashingModel = await hashingService.Hash(request.Username, request.Password, Guid.NewGuid());
+            HashingModel hashingModel = await hashingService.HashAsync(request.Username, request.Password, Guid.NewGuid());
 
             HttpResponseMessage response = await httpClient.PostAsJsonAsync("https://localhost:7221/api/Users", hashingModel, cancellationToken);
 

@@ -7,7 +7,7 @@ namespace Application.Services
 {
     public class HashingService : IHashingService
     {
-        public async Task<HashingModel> Hash(string username, string password, Guid salt)
+        public async Task<HashingModel> HashAsync(string username, string password, Guid salt)
         {
             byte[] byteInput = Encoding.ASCII.GetBytes(password);
 
