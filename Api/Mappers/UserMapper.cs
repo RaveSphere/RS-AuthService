@@ -1,4 +1,5 @@
 ﻿using Api.DTO;
+using Api.RequestModels;
 using Api.ResponseModels;
 using Api.ViewModels;
 using Core.Models;
@@ -14,7 +15,17 @@ namespace Api.Mappers
 
         public static CreateUserDTO Map(HashingModel hashingModel)
         {
-            return new CreateUserDTO(hashingModel.Username, hashingModel.HashedPassword, hashingModel.Salt);
+            return new CreateUserDTO(hashingModel.Username, hashingModel.Password, hashingModel.Salt);
+        }
+
+        public static GetUserDTO Map(LoginRequest request)
+        {
+            return new GetUserDTO(request.Username);
+        }
+
+        public static GetUserSaltDTO SaltMap(LoginRequest request)
+        {
+            return new GetUserSaltDTO(request.Username);
         }
     }
 }

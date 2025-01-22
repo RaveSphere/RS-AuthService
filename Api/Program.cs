@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 // Add Services
 builder.Services
     .AddValidatorsFromAssemblyContaining<UserRequestValidator>()
-    .AddApplicationServices()
+    .AddApplicationServices(builder.Configuration)
     .AddHttpClient();
 
 var app = builder.Build();

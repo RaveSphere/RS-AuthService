@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface ITokenService
     {
-        public Task<TokenModel> GenerateToken();
+        string GenerateToken(UserModel user);
     }
 }

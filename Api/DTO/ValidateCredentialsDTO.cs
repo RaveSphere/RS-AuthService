@@ -1,16 +1,14 @@
-﻿namespace Core.Models
+﻿namespace Api.DTO
 {
-    public class HashingModel
+    public class ValidateCredentialsDTO
     {
         public string Username { get; init; }
         public string Password { get; init; }
-        public Guid Salt { get; init; }
 
-        public HashingModel(string username, string password, Guid salt)
+        public ValidateCredentialsDTO(string username, string password)
         {
             Username = username;
             Password = password;
-            Salt = salt;
         }
     }
 }
