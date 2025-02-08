@@ -21,7 +21,7 @@ namespace Application
             if (environment == "Production")
             {
                 var vaultService = services.BuildServiceProvider().GetRequiredService<IVaultService>();
-                string? jwtSettingsJson = await vaultService.GetSecretJsonAsync("userService/connectionStrings");
+                string? jwtSettingsJson = await vaultService.GetSecretJsonAsync("authService/JwtSettings");
 
                 if (!string.IsNullOrEmpty(jwtSettingsJson))
                 {
